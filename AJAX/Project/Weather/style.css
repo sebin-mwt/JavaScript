@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+.weather-card{
+    width: 70%;
+    height: 400px;
+    background-image: linear-gradient(to right top, #beebd4, #a1e2d7, #86d8de, #73cce6, #71beeb, #6ebeef, #6bbff4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+    margin: 20px;
+    text-align: center;
+}      
+
+.weather-logo img{
+    width: 100px;
+    height: 100px;
+    border: rgb(173, 145, 145) solid 2px;
+}
+
+#search{
+    height: 35px;
+    width: 60%;
+}
+
+#buton{
+    height: 33px;
+    width: 17%;
+    background-color: rgb(248, 244, 244);
+    
+}
+.weather-main h1{
+    color: white;
+    font-size:xx-large;
+    font-weight: 500;
+}
+
+.weather-main h2{   
+    color: #048cba;
+    font-size:xx-large;
+    font-weight: 700;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container m-5">
+
+    <div style="text-align: center;">
+
+        <h1>User Data</h1>
+        <button id="buton" type="submit">Check</button>
+    
+    </div>
+
+    <div id="tab-cont">
+
+    </div>
+
+</div>
+</body>
+
+<script>
+
+    let btn=document.getElementById("buton")
+    
+    btn.addEventListener('click',function(){
+
+     let container = document.getElementById("tab-cont");
+       fetch("https://jsonplaceholder.typicode.com/users")
+      .then(res => res.json())
+      .then((data) => {
+        
+        let htmlData = `<table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Sl.</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Company</th>
+            </tr>
+          </thead>
+          <tbody>`;
+
+        for (let i = 0; i < 5; i++) {
+          htmlData += `
+            <tr>
+              <td>${i + 1}</td>
+              <td>${data[i].name}</td>
+              <td>${data[i].email}</td>
+              <td>${data[i].phone}</td>
+              <td>${data[i].company.name}</td>
+            </tr>`;
+        }
+
+        htmlData += `
+          </tbody>
+        </table>`;
+
+        container.innerHTML = htmlData;
+      })
+      .catch(err => console.error("Error:", err));
+
+    })
+
+    
+</script>
+
+</html>

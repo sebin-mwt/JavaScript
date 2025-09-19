@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Checker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">🌦 Weather Checker</h2>
+
+  <!-- Input and button -->
+  <div class="input-group mb-3">
+    <input type="text" id="city" class="form-control" placeholder="Enter city name">
+    <button id="getWeather" class="btn btn-primary">Check</button>
+  </div>
+
+  <!-- Weather Result -->
+  <div id="weatherResult" class="card p-3 shadow-sm d-none">
+    <h4 id="cityName"></h4>
+    <p id="temperature"></p>
+    <p id="description"></p>
+    <p id="humidity"></p>
+    <img id="icon" src="" alt="Weather Icon">
+  </div>
+</div>
+
+<script>
+  const apiKey = "YOUR_API_KEY"; // 🔑 Get free key from openweathermap.org
+
+  document.getElementById("getWeather").addEventListener("click", () => {
+    const city = document.getElementById("city").value;
+
+    if (!city) {
+      alert("Please enter a city name!");
+      return;
+    }
+
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
+      .then(res => {
+        if (!res.ok) throw new Error("City not found");
+        return res.json();
+      })
+      .then(data => {
+        document.getElementById("cityName").textContent = `📍 ${data.name}, ${data.sys.country}`;
+        document.getElementById("temperature").textContent = `🌡 Temperature: ${data.main.temp}°C`;
+        document.getElementById("description").textContent = `☁️ Weather: ${data.weather[0].description}`;
+        document.getElementById("humidity").textContent = `💧 Humidity: ${data.main.humidity}%`;
+        document.getElementById("icon").src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+
+        document.getElementById("weatherResult").classList.remove("d-none");
+      })
+      .catch(err => {
+        alert("Error: " + err.message);
+      });
+  });
+</script>
+
+</body>
+</html>

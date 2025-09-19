@@ -1,0 +1,25 @@
+body{
+    background-color: antiquewhite;
+}
+
+.animal-card{    
+    height: 100 vh;
+}
+
+.card-head input{
+    height: 2rem;
+    width: 13rem;
+}
+
+.card-head button{
+    height: 1.9rem;
+    width: 4rem;
+}
+
+.bg{
+    background-color: white;
+}
+
+.animal-desc{
+    display:none;
+}
